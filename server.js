@@ -35,6 +35,14 @@ app.use('/getUser',(req,res)=>{
     })
 })
 
+//get all users
+app.use('/getAllUsers',(req,res)=>{
+    User.find({},{_id:0})
+    .then((result)=>{
+        res.status(200).json(result);
+    })
+    .catch((err)=>{res.status(400).json({"message" : err});})
+})
 //default route
 app.use('/',(req,res)=>{
     res.status(404).json({"message" : "Wrong route"});
